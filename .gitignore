@@ -5,3 +5,7 @@ coverage/
 docs/
 test-results/
 playwright-report/
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
