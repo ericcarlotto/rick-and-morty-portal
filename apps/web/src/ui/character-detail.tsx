@@ -3,19 +3,19 @@ import { statusClass } from './status-class';
 
 export function CharacterDetail({ character, episodeId }: { character: CastCharacter; episodeId: number }) {
   return (
-    <article>
+    <article className="detail">
       <h1>{character.name}</h1>
       <p>Espécie: {character.species}</p>
       <p className={statusClass(character.status)}>Estado: {character.status}</p>
       <p>Origem: {character.origin}</p>
-      <a href={`/episodes/${episodeId}`}>Voltar ao elenco</a>
+      <a className="back" href={`/episodes/${episodeId}`}>Voltar ao elenco</a>
     </article>
   );
 }
 
 export function MissingCharacter({ episodeId }: { episodeId: number }) {
   return (
-    <p>
+    <p className="notice">
       Personagem não encontrada. <a href={`/episodes/${episodeId}`}>Voltar ao elenco</a>
     </p>
   );

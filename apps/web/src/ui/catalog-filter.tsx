@@ -2,7 +2,7 @@ import type { CatalogQuery } from '../catalog/query';
 
 export function CatalogFilter({ query }: { query: CatalogQuery }) {
   return (
-    <form action="/" method="get">
+    <form className="catalog-filter" action="/" method="get">
       <label>
         Nome
         <input name="name" defaultValue={query.name ?? ''} />

@@ -5,7 +5,7 @@ export function Neighbors({ previousEpisode, nextEpisode }: {
   nextEpisode: EpisodeSummary | null;
 }) {
   return (
-    <nav aria-label="Episódios vizinhos">
+    <nav className="neighbors" aria-label="Episódios vizinhos">
       <NeighborLink link={{ label: 'Anterior', episode: previousEpisode, empty: 'Sem episódio anterior' }} />
       <NeighborLink link={{ label: 'Seguinte', episode: nextEpisode, empty: 'Sem episódio seguinte' }} />
     </nav>

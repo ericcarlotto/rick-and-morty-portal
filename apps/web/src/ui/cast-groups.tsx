@@ -13,7 +13,7 @@ export function CastGroups({ groups, episodeId }: { groups: LetterGroup[]; episo
 
 function LetterSection({ group, episodeId }: { group: LetterGroup; episodeId: number }) {
   return (
-    <section id={`letra-${group.letter}`} aria-label={`Letra ${group.letter}`}>
+    <section className="letter-section" id={`letra-${group.letter}`} aria-label={`Letra ${group.letter}`}>
       <h2 className="index-letter">{group.letter}</h2>
       <ul>
         {group.characters.map((character) => (
