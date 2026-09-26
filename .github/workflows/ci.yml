@@ -73,7 +73,7 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -no-snapshot -gpu swiftshader_indirect
           script: |
-            set -euo pipefail
+            set -eu
             export STUB_PORT=4011
             cd "$GITHUB_WORKSPACE"
             npx tsx apps/web/e2e/stub-bff.ts &
