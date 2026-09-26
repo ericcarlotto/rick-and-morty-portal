@@ -1,6 +1,6 @@
-# AGENTS — teste-zrp
+# AGENTS do teste-zrp
 
-Aplicação Rick and Morty: web Next.js, mobile Flutter, BFF NestJS. Código ainda não existe. Não criar pastas que `docs/PLANO.md` não nomeia.
+Aplicação Rick and Morty: web Next.js, mobile Flutter, BFF NestJS. O BFF está em `apps/bff`. Não criar pastas que `docs/PLANO.md` não nomeia.
 
 Antes de implementar qualquer tarefa, ler este ficheiro, `CEREBRO.md` e `docs/PLANO.md`.
 
@@ -13,6 +13,10 @@ Antes de implementar qualquer tarefa, ler este ficheiro, `CEREBRO.md` e `docs/PL
 | O que foi pedido, em lista | `README.md` |
 
 Uma tarefa, um pull request. Não começar a seguinte no mesmo PR. O browser e o Flutter não chamam a Rick and Morty API. Só o BFF. No fim da tarefa, atualizar a tabela e a linha Próxima tarefa em `CEREBRO.md`.
+
+## Testes (obrigatório)
+
+A secção `Testes` de `docs/PLANO.md` manda o tipo. Unidade, componente, integração, HTTP, E2E de produto, contrato e acessibilidade entram no mesmo PR assim que essa camada existe. Cobertura do código de produção: mínimo 96% em linhas, funções e ramos. O alvo é 100%. O CI falha abaixo de 96%.
 
 ## Lint (obrigatório)
 
