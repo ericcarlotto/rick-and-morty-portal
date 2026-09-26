@@ -58,9 +58,15 @@ ul {
 }
 
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   display: flex;
+  box-sizing: border-box;
   align-items: center;
-  padding: 1.1rem 2.5rem;
+  height: 4.25rem;
+  padding: 0 2.5rem;
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
 
@@ -88,7 +94,8 @@ ul {
 .detail,
 .episode-row,
 .letter-section,
-.census {
+.census,
+.name-filter {
   padding-right: 2.5rem;
   padding-left: 2.5rem;
 }
@@ -127,6 +134,25 @@ ul {
   font-size: 1.125rem;
 }
 
+.name-filter {
+  display: block;
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.name-filter input {
+  display: block;
+  width: min(18rem, 100%);
+  margin-top: 0.25rem;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--indigo);
+}
+
 .catalog-filter {
   display: flex;
   gap: 0.75rem;
@@ -139,7 +165,8 @@ ul {
   color: var(--muted);
 }
 
-.catalog-filter input {
+.catalog-filter input,
+.catalog-filter select {
   display: block;
   width: 9rem;
   margin-top: 0.25rem;
@@ -148,15 +175,6 @@ ul {
   color: inherit;
   background: var(--card);
   border: 1px solid var(--indigo);
-}
-
-.catalog-filter button {
-  padding: 0.6rem 0.9rem;
-  font: inherit;
-  font-weight: 700;
-  color: var(--paper);
-  background: var(--indigo);
-  border: 0;
 }
 
 .episode-row {
@@ -202,10 +220,17 @@ ul {
 }
 
 .letter-index {
-  position: sticky;
-  top: 1rem;
-  flex: 0 0 4.5rem;
-  padding: 0.5rem 0 2rem 1.75rem;
+  position: fixed;
+  top: 4.25rem;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  box-sizing: border-box;
+  width: 4.5rem;
+  padding: 0.85rem 0 1rem 1.35rem;
+  overflow-y: auto;
+  background: var(--paper);
+  border-right: 1px solid var(--line);
 }
 
 .index-list {
@@ -228,6 +253,11 @@ h2.index-letter {
 .cast-main {
   flex: 1;
   min-width: 0;
+  margin-left: 4.5rem;
+}
+
+.scroll-sentinel {
+  height: 1px;
 }
 
 .back {
@@ -391,7 +421,8 @@ h2.index-letter {
   .detail,
   .episode-row,
   .letter-section,
-  .census {
+  .census,
+  .name-filter {
     padding-right: 1.25rem;
     padding-left: 1.25rem;
   }
@@ -405,9 +436,18 @@ h2.index-letter {
   }
 
   .letter-index {
-    position: static;
-    flex-basis: auto;
-    padding: 0 1.25rem;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    padding: 0.45rem 1rem;
+    border-right: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .cast-main {
+    margin-left: 0;
+    padding-bottom: 3.5rem;
   }
 
   .index-list {
@@ -415,7 +455,8 @@ h2.index-letter {
     gap: 0.85rem;
   }
 
-  .catalog-filter input {
+  .catalog-filter input,
+  .catalog-filter select {
     width: 100%;
   }
 }

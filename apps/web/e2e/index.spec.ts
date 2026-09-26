@@ -6,4 +6,5 @@ test('salta para a letra do índice', async ({ page }) => {
   await expect(page).toHaveURL(/#letra-M/);
   await expect(page.getByRole('heading', { name: 'M', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'M', exact: true })).toHaveClass(/index-letter/);
+  await expect(page.getByRole('navigation', { name: 'Índice' })).toHaveCSS('position', 'fixed');
 });

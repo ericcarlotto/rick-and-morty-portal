@@ -4,8 +4,6 @@ const pilotEpisode: EpisodeSummary = { id: 1, name: 'Pilot', code: 'S01E01' };
 const lawnEpisode: EpisodeSummary = { id: 2, name: 'Lawnmower Dog', code: 'S01E02' };
 const anatomyEpisode: EpisodeSummary = { id: 3, name: 'Anatomy Park', code: 'S01E03' };
 
-export const episodes: EpisodeSummary[] = [pilotEpisode, lawnEpisode, anatomyEpisode];
-
 const pilot: Cast = {
   episode: pilotEpisode,
   previousEpisode: null,
@@ -51,8 +49,39 @@ const anatomy: Cast = {
   census: { byStatus: [{ label: 'Vivo', count: 1 }], bySpecies: [{ label: 'Human', count: 1 }] },
 };
 
-const casts: Record<number, Cast> = { 1: pilot, 2: lawn, 3: anatomy };
+const archiveIds = Array.from({ length: 19 }, (_, index) => index + 4);
+
+export const episodes: EpisodeSummary[] = [pilotEpisode, lawnEpisode, anatomyEpisode, ...archiveIds.map(archiveEpisode)];
+
+const casts: Record<number, Cast> = { 1: pilot, 2: lawn, 3: anatomy, 4: archiveCast() };
 
 export function castById(id: number): Cast | undefined {
   return casts[id];
+}
+
+function archiveEpisode(id: number): EpisodeSummary {
+  return { id, name: `Arquivo ${id}`, code: `S02E${String(id).padStart(2, '0')}` };
+}
+
+function archiveCast(): Cast {
+  return {
+    episode: archiveEpisode(4),
+    previousEpisode: anatomyEpisode,
+    nextEpisode: null,
+    index: ['A', 'Z'],
+    characters: Array.from({ length: 16 }, (_, index) => characterAt(index)),
+    census: { byStatus: [{ label: 'Vivo', count: 16 }], bySpecies: [{ label: 'Human', count: 16 }] },
+  };
+}
+
+function characterAt(index: number): Cast['characters'][number] {
+  const early = index < 15;
+  return {
+    id: 100 + index,
+    name: early ? `Alpha ${index}` : 'Zeta',
+    species: 'Human',
+    status: 'Vivo',
+    origin: 'Earth',
+    letter: early ? 'A' : 'Z',
+  };
 }
