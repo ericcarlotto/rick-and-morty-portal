@@ -2,17 +2,18 @@ import { expect, test } from 'vitest';
 import { catalogPath, catalogQuery } from './query';
 
 test('chave ausente fica sem filtro', () => {
-  expect(catalogQuery({})).toEqual({ name: undefined, code: undefined });
+  expect(catalogQuery({})).toEqual({ name: undefined, code: undefined, season: undefined });
 });
 
 test('aceita nome e código, e ignora vazio', () => {
-  expect(catalogQuery({ name: ' Pilot ', code: '' })).toEqual({ name: 'Pilot', code: undefined });
+  expect(catalogQuery({ name: ' Pilot ', code: '' })).toEqual({ name: 'Pilot', code: undefined, season: undefined });
 });
 
 test('usa o primeiro valor quando a query repete a chave', () => {
   expect(catalogQuery({ name: ['Rick', 'Morty'], code: ['S01'] })).toEqual({
     name: 'Rick',
     code: 'S01',
+    season: undefined,
   });
 });
 
@@ -26,4 +27,9 @@ test('envia nome e código ao BFF', () => {
 
 test('envia só o código', () => {
   expect(catalogPath({ code: 'S01' })).toBe('/api/episodes?code=S01');
+});
+
+test('envia a temporada', () => {
+  expect(catalogQuery({ season: ' 2 ' })).toEqual({ name: undefined, code: undefined, season: '2' });
+  expect(catalogPath({ season: '2' })).toBe('/api/episodes?season=2');
 });

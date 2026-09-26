@@ -8,15 +8,12 @@ export async function loadCatalog(input: {
   origin?: string;
 }): Promise<CatalogModel> {
   const query = catalogQuery(await input.searchParams);
-  return { query, remote: await remoteCatalog({ query, origin: input.origin }) };
+  return { query, remote: await remoteCatalog({ origin: input.origin }) };
 }
 
-async function remoteCatalog(input: {
-  query: CatalogModel['query'];
-  origin?: string;
-}): Promise<Remote<EpisodeCatalog>> {
+async function remoteCatalog(input: { origin?: string }): Promise<Remote<EpisodeCatalog>> {
   try {
-    return { ok: true, value: await readCatalog(input) };
+    return { ok: true, value: await readCatalog({ query: {}, origin: input.origin }) };
   } catch {
     return { ok: false };
   }

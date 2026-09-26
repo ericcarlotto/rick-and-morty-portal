@@ -7,6 +7,7 @@ export async function buildCatalog(input: {
   source: EpisodeSource;
   name?: string;
   code?: string;
+  season?: string;
 }): Promise<EpisodeCatalog> {
   const episodes = await input.source.listEpisodes();
   return {
@@ -14,6 +15,7 @@ export async function buildCatalog(input: {
       episodes: episodes.map((episode) => toSummary(episode)),
       name: input.name,
       code: input.code,
+      season: input.season,
     }),
   };
 }

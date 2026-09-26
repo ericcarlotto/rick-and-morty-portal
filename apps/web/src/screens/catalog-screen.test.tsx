@@ -17,18 +17,23 @@ afterAll(() => {
   delete process.env.BFF_ORIGIN;
 });
 
-test('o ecrã pede o catálogo filtrado ao BFF', async () => {
+test('o ecrã lê o catálogo inteiro e filtra no browser', async () => {
   let search = '';
   server.use(
     http.get(`${origin}/api/episodes`, ({ request }) => {
       search = new URL(request.url).search;
-      return HttpResponse.json({ episodes: [{ id: 1, name: 'Pilot', code: 'S01E01' }] });
+      return HttpResponse.json({
+        episodes: [
+          { id: 1, name: 'Pilot', code: 'S01E01' },
+          { id: 2, name: 'Lawnmower Dog', code: 'S01E02' },
+        ],
+      });
     }),
   );
-  render(await CatalogScreen({ searchParams: Promise.resolve({ name: 'Pilot', code: 'S01E01' }) }));
-  expect(screen.getByRole('link', { name: /Pilot/ })).toBeTruthy();
-  expect(search).toContain('name=Pilot');
-  expect(search).toContain('code=S01E01');
+  render(await CatalogScreen({ searchParams: Promise.resolve({ name: 'Lawn' }) }));
+  expect(search).toBe('');
+  expect(screen.getByRole('link', { name: /Lawnmower Dog/ })).toBeTruthy();
+  expect(screen.queryByRole('link', { name: /Pilot/ })).toBeNull();
 });
 
 test('o ecrã mostra a falha do BFF', async () => {
