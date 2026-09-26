@@ -1,6 +1,6 @@
 import type { IncomingMessage } from 'node:http';
 import type { EpisodeSummary } from '@rick/contract';
-import { filterEpisodes as byQuery } from '../../bff/src/domain/filter-episodes';
+import { filterCatalog } from '../src/catalog/filter-catalog';
 import { castById, episodes } from './stub-data';
 
 export function stubBody(request: IncomingMessage): unknown {
@@ -11,11 +11,9 @@ export function stubBody(request: IncomingMessage): unknown {
 }
 
 function listed(url: URL): EpisodeSummary[] {
-  return byQuery({
+  return filterCatalog({
     episodes,
-    name: text(url, 'name'),
-    code: text(url, 'code'),
-    season: text(url, 'season'),
+    query: { name: text(url, 'name'), code: text(url, 'code'), season: text(url, 'season') },
   });
 }
 
