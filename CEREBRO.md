@@ -1,0 +1,36 @@
+# Cérebro do teste
+
+Só este teste. Ler isto primeiro.
+
+**Código:** https://github.com/ericcarlotto/rick-and-morty-portal  
+**Atualizado:** 2026-09-26  
+**Próxima tarefa:** T1, BFF
+
+## Estado
+
+| Item | Estado |
+| --- | --- |
+| README, cérebro, plano, AGENTS | escritos |
+| Lint (ESLint na raiz) | `npm run lint` |
+| T1 BFF | por fazer |
+| T2 Web | por fazer |
+| T3 Flutter | por fazer |
+| T4 Docker e CI | por fazer |
+
+Ainda não há código. Não criar pastas que o plano não nomeia.
+
+A pasta `docs/` fica fora do git. O plano está no ficheiro local `docs/PLANO.md`.
+
+## Abrir se
+
+| Precisas de | Abrir |
+| --- | --- |
+| Requisitos e as 4 tarefas | `docs/PLANO.md` |
+| O que foi pedido, em lista | `README.md` |
+| Limiares e fronteiras do lint | `AGENTS.md`, `eslint.config.js` |
+
+## Regras
+
+- Uma tarefa, um pull request. Não começar a seguinte no mesmo PR.
+- O browser e o Flutter não chamam a Rick and Morty API. Só o BFF.
+- No fim da tarefa, atualizar esta tabela e a linha Próxima tarefa.
