@@ -13,7 +13,7 @@ import 'support/scripted_api.dart';
 void main() {
   testWidgets('mostra o catálogo e abre o episódio', (tester) async {
     await pumpPortal(tester, portalApi());
-    expect(find.text('Catálogo de episódios'), findsOneWidget);
+    expect(find.text('Episódios'), findsOneWidget);
     expect(find.text('Pilot'), findsOneWidget);
     expect(find.text('Lawnmower Dog'), findsOneWidget);
     expect(find.text('Anatomy Park'), findsOneWidget);
@@ -46,21 +46,27 @@ void main() {
     expect(find.byType(CatalogError), findsOneWidget);
   });
 
-  testWidgets('filtra por nome ou código', (tester) async {
+  testWidgets('filtra por nome, código ou temporada sem botão', (tester) async {
     final api = portalApi();
+    api.episodesHandler = (_) async => EpisodeCatalog(episodes: [pilotEpisode, lawnEpisode, anatomyEpisode, episodeOf(12, 'A Rickle in Time', 'S02E01')]);
     await pumpPortal(tester, api);
+    expect(find.byKey(const Key('filtrar')), findsNothing);
+    expect(api.queries.single.name, isNull);
     await tester.enterText(find.byKey(const Key('filtro-nome')), 'Lawn');
-    await tester.tap(find.byKey(const Key('filtrar')));
     await tester.pumpAndSettle();
-    expect(api.queries.last.name, 'Lawn');
     expect(find.text('Lawnmower Dog'), findsOneWidget);
     expect(find.text('Pilot'), findsNothing);
     await tester.enterText(find.byKey(const Key('filtro-nome')), '');
     await tester.enterText(find.byKey(const Key('filtro-codigo')), 'S01E03');
-    await tester.tap(find.byKey(const Key('filtrar')));
     await tester.pumpAndSettle();
-    expect(api.queries.last.code, 'S01E03');
     expect(find.text('Anatomy Park'), findsOneWidget);
+    expect(find.text('Pilot'), findsNothing);
+    await tester.enterText(find.byKey(const Key('filtro-codigo')), '');
+    await tester.tap(find.byKey(const Key('filtro-temporada')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('2').last);
+    await tester.pumpAndSettle();
+    expect(find.text('A Rickle in Time'), findsOneWidget);
     expect(find.text('Pilot'), findsNothing);
   });
 }

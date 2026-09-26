@@ -14,10 +14,11 @@ class SectionKeys {
 }
 
 class LetterBar {
-  const LetterBar({required this.letters, required this.keys});
+  const LetterBar({required this.letters, required this.keys, required this.onChoose});
 
   final List<String> letters;
   final SectionKeys keys;
+  final ValueChanged<String> onChoose;
 }
 
 class LetterIndex extends StatelessWidget {
@@ -31,24 +32,31 @@ class LetterIndex extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Heading(spec: HeadingSpec(text: 'Índice', style: sectionHeading())),
-        Wrap(spacing: 8, children: [for (final letter in bar.letters) indexButton(IndexButtonData(letter: letter, keys: bar.keys))]),
+        Wrap(spacing: 8, children: [for (final letter in bar.letters) indexButton(buttonFor(bar, letter))]),
       ],
     );
   }
 }
 
 class IndexButtonData {
-  const IndexButtonData({required this.letter, required this.keys});
+  const IndexButtonData({required this.letter, required this.keys, required this.onChoose});
 
   final String letter;
   final SectionKeys keys;
+  final ValueChanged<String> onChoose;
+}
+
+IndexButtonData buttonFor(LetterBar bar, String letter) {
+  return IndexButtonData(letter: letter, keys: bar.keys, onChoose: bar.onChoose);
 }
 
 Widget indexButton(IndexButtonData data) {
   return TextButton(
     key: Key('indice-${data.letter}'),
     style: indexLinkStyle(),
-    onPressed: () => data.keys.jump(data.letter),
+    onPressed: () => pressIndex(data),
     child: Text(data.letter, style: indexStyle()),
   );
 }
+
+void pressIndex(IndexButtonData data) => data.onChoose(data.letter);

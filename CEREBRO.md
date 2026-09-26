@@ -15,7 +15,7 @@ Só este teste. Ler isto primeiro.
 | Testes no plano | unidade, componente, integração, HTTP, E2E, contrato, acessibilidade. Cobertura mínima 96%, alvo 100% |
 | T1 BFF | feito. `npm run start:bff` |
 | T2 Web | feito. Índice fixo. Listas abrem com 15 e o scroll carrega mais 5. Filtros ao vivo no catálogo e no elenco |
-| T3 Flutter | feito |
+| T3 Flutter | feito. O ecrã mobile segue o Figma: marca, episódios, elenco, voltar fixo e loading no scroll |
 | T4 Docker e CI | feito |
 
 O BFF está em `apps/bff`. A web está em `apps/web`. O Flutter está em `apps/mobile`. Não criar pastas que o plano não nomeia.

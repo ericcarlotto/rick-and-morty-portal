@@ -39,4 +39,5 @@ flutter test \
   integration_test/neighbors_test.dart \
   integration_test/filter_test.dart \
   integration_test/index_test.dart \
+  integration_test/paging_test.dart \
   --dart-define=BFF_ORIGIN=http://10.0.2.2:4011

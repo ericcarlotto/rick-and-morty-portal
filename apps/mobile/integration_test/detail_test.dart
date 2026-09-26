@@ -11,8 +11,8 @@ void main() {
     await tester.tap(find.text('Morty Smith'));
     await tester.pumpAndSettle();
     expect(find.text('Morty Smith'), findsWidgets);
-    expect(find.text('Espécie: Human'), findsWidgets);
-    expect(find.text('Estado: Vivo'), findsWidgets);
-    expect(find.text('Origem: Earth'), findsWidgets);
+    expect(find.text('Human'), findsOneWidget);
+    expect(find.text('Vivo'), findsWidgets);
+    expect(find.text('Earth'), findsOneWidget);
   });
 }

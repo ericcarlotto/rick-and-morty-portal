@@ -8,6 +8,7 @@ String catalogPath(CatalogQuery query) {
   final params = <String, String>{};
   putQuery(params, QueryPart(key: 'name', value: query.name));
   putQuery(params, QueryPart(key: 'code', value: query.code));
+  putQuery(params, QueryPart(key: 'season', value: query.season));
   if (params.isEmpty) return '/api/episodes';
   return '/api/episodes?${Uri(queryParameters: params).query}';
 }

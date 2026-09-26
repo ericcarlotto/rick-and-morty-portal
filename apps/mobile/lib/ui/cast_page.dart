@@ -5,7 +5,6 @@ import 'package:mobile/bff/portal_api.dart';
 import 'package:mobile/contract/cast.dart';
 import 'package:mobile/contract/character.dart';
 import 'package:mobile/load/read_cast.dart';
-import 'package:mobile/nav/portal_nav.dart';
 import 'package:mobile/ui/cast_view.dart';
 import 'package:mobile/ui/chrome.dart';
 import 'package:mobile/ui/detail_page.dart';
@@ -54,7 +53,7 @@ class _CastPageState extends State<CastPage> {
 
   CastActions actionsFor() {
     return CastActions(
-      moves: CastMoves(onCatalog: () => popToCatalog(context), onEpisode: openEpisode),
+      moves: CastMoves(onEpisode: openEpisode),
       onCharacter: openCharacter,
     );
   }

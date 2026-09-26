@@ -1,27 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mobile/theme/text_styles.dart';
+import 'package:mobile/ui/brand_bar.dart';
 
 // O salto alinha a letra ao topo. Este alcance mantém o índice e o último cartão montados.
 const pageCacheExtent = 2400.0;
 
 class PageFrame extends StatelessWidget {
-  const PageFrame({required this.children, super.key});
+  const PageFrame({required this.children, this.header, this.footer, super.key});
 
   final List<Widget> children;
+  final Widget? header;
+  final Widget? footer;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          scrollCacheExtent: const ScrollCacheExtent.pixels(pageCacheExtent),
-          padding: const EdgeInsets.fromLTRB(20, 24, 20, 48),
-          children: children,
-        ),
-      ),
-    );
+    return Scaffold(body: SafeArea(child: frameColumn(this)));
   }
+}
+
+Widget frameColumn(PageFrame frame) {
+  return Column(
+    children: [
+      const BrandBar(),
+      if (frame.header != null) frame.header!,
+      Expanded(child: frameList(frame)),
+      if (frame.footer != null) frame.footer!,
+    ],
+  );
+}
+
+Widget frameList(PageFrame frame) {
+  return ListView(
+    scrollCacheExtent: const ScrollCacheExtent.pixels(pageCacheExtent),
+    padding: const EdgeInsets.fromLTRB(20, 24, 20, 48),
+    children: frame.children,
+  );
 }
 
 class Heading extends StatelessWidget {
@@ -61,6 +75,13 @@ class EmptyCatalog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text('Nenhum episódio encontrado.', style: bodyStyle());
+}
+
+class EmptyCast extends StatelessWidget {
+  const EmptyCast({super.key});
+
+  @override
+  Widget build(BuildContext context) => Text('Nenhuma personagem encontrada.', style: bodyStyle());
 }
 
 class CastError extends StatelessWidget {
