@@ -19,9 +19,8 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.text('Morty Smith'), findsOneWidget);
-    expect(find.text('Espécie: Human'), findsWidgets);
-    expect(find.text('Estado: Vivo'), findsWidgets);
-    expect(find.text('Origem: Earth'), findsWidgets);
+    expect(find.text('Human · Earth'), findsWidgets);
+    expect(find.text('Vivo'), findsWidgets);
     await expectLater(tester, meetsGuideline(textContrastGuideline));
     await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
     await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));

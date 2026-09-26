@@ -1,10 +1,11 @@
 import 'package:mobile/contract/episode.dart';
 
 class CatalogQuery {
-  const CatalogQuery({this.name, this.code});
+  const CatalogQuery({this.name, this.code, this.season});
 
   final String? name;
   final String? code;
+  final String? season;
 }
 
 class EpisodeCatalog {
@@ -14,7 +15,11 @@ class EpisodeCatalog {
 }
 
 CatalogQuery cleanQuery(CatalogQuery query) {
-  return CatalogQuery(name: blankToNull(query.name), code: blankToNull(query.code));
+  return CatalogQuery(name: blankToNull(query.name), code: blankToNull(query.code), season: blankToNull(query.season));
+}
+
+String draftKey(CatalogQuery query) {
+  return '${query.name ?? ''}|${query.code ?? ''}|${query.season ?? ''}';
 }
 
 String? blankToNull(String? value) {

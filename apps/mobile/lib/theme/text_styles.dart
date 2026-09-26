@@ -23,6 +23,16 @@ TextStyle chosenStyle() => titleStyle().copyWith(color: PortalColors.indigo);
 
 TextStyle sectionHeading() => titleStyle().copyWith(fontSize: 22);
 
+TextStyle eyebrowStyle() {
+  return const TextStyle(
+    color: PortalColors.indigo,
+    fontFamily: 'IBM Plex Mono',
+    fontSize: 12,
+    height: 1.2,
+    letterSpacing: 1.4,
+  );
+}
+
 TextStyle codeStyle() {
   return const TextStyle(
     color: PortalColors.tinta,
@@ -55,16 +65,14 @@ ButtonStyle linkStyle() {
 }
 
 ButtonStyle indexLinkStyle() {
-  return linkStyle().copyWith(foregroundColor: const WidgetStatePropertyAll(PortalColors.indigo));
-}
-
-ButtonStyle filterStyle() {
-  return FilledButton.styleFrom(
-    backgroundColor: PortalColors.tinta,
-    foregroundColor: PortalColors.papel,
+  return TextButton.styleFrom(
+    foregroundColor: PortalColors.indigo,
     minimumSize: const Size(48, 48),
-    tapTargetSize: MaterialTapTargetSize.padded,
-    textStyle: bodyStyle().copyWith(color: PortalColors.papel),
+    fixedSize: const Size(48, 48),
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    alignment: Alignment.center,
+    padding: EdgeInsets.zero,
+    textStyle: indexStyle(),
   );
 }
 
@@ -73,8 +81,9 @@ InputDecoration fieldDecoration(String label) {
     labelText: label,
     labelStyle: bodyStyle(),
     floatingLabelStyle: bodyStyle(),
-    constraints: const BoxConstraints(minHeight: 48),
-    enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: PortalColors.tinta)),
+    constraints: const BoxConstraints(minHeight: 52),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+    enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: PortalColors.linha)),
     focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: PortalColors.indigo, width: 2)),
   );
 }

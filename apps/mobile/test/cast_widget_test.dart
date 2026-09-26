@@ -15,21 +15,19 @@ void main() {
     await pumpPortal(tester, portalApi());
     await openNamed(tester, 'Lawnmower Dog');
     expect(cardNames(tester), ['Abradolf Lincler', 'Birdperson', 'Morty Smith', 'Rick Sanchez']);
-    expect(find.text('Espécie: Human'), findsWidgets);
-    expect(find.text('Estado: Vivo'), findsWidgets);
-    expect(find.text('Origem: Earth'), findsWidgets);
-    expect(find.text('Espécie: Alien'), findsOneWidget);
-    expect(find.text('Estado: Morto'), findsOneWidget);
-    expect(find.text('Estado: Desconhecido'), findsOneWidget);
-    expect(find.text('Origem: Bird World'), findsOneWidget);
-    expect(find.text('Morto: 1'), findsOneWidget);
-    expect(find.text('Alien: 1'), findsOneWidget);
+    expect(find.text('Human · Earth'), findsWidgets);
+    expect(find.text('Vivo'), findsWidgets);
+    expect(find.text('Alien · Bird World'), findsOneWidget);
+    expect(find.text('Morto'), findsOneWidget);
+    expect(find.text('Desconhecido'), findsOneWidget);
+    expect(find.text('Morto 1'), findsOneWidget);
+    expect(find.text('Alien 1'), findsOneWidget);
     expect(styleOf(tester, 'Lawnmower Dog').color, PortalColors.indigo);
     expect(styleOf(tester, 'S01E02').fontFamily, 'IBM Plex Mono');
     expect(styleOf(tester, 'Morty Smith').color, PortalColors.tinta);
-    expect(styleOf(tester, 'Estado: Morto').color, PortalColors.morto);
-    expect(styleOf(tester, 'Estado: Vivo').color, PortalColors.vivo);
-    expect(styleOf(tester, 'Estado: Desconhecido').color, PortalColors.desconhecido);
+    expect(styleOf(tester, 'Morto').color, PortalColors.morto);
+    expect(styleOf(tester, 'Vivo').color, PortalColors.vivo);
+    expect(styleOf(tester, 'Desconhecido').color, PortalColors.desconhecido);
     for (final letter in tester.widgetList<Text>(find.text('M'))) {
       expect(letter.style?.color, PortalColors.indigo);
     }
@@ -40,23 +38,25 @@ void main() {
 
     await tester.tap(find.text('Morty Smith'));
     await tester.pumpAndSettle();
-    expect(find.text('Espécie: Human'), findsOneWidget);
-    expect(find.text('Estado: Vivo'), findsOneWidget);
-    expect(find.text('Origem: Earth'), findsOneWidget);
-    await tester.tap(find.text('Voltar ao elenco'));
+    expect(find.text('Human'), findsOneWidget);
+    expect(find.text('Vivo'), findsWidgets);
+    expect(find.text('Earth'), findsOneWidget);
+    await tester.tap(find.text('Voltar').last);
     await tester.pumpAndSettle();
     expect(find.text('Lawnmower Dog'), findsOneWidget);
 
-    await tester.tap(find.text('Anterior: Pilot'));
+    await tester.tap(find.text('Anterior · S01E01'));
     await tester.pumpAndSettle();
     expect(find.text('Pilot'), findsWidgets);
     expect(find.text('Sem episódio anterior'), findsOneWidget);
-    await tester.tap(find.text('Catálogo'));
+    await tester.tap(find.text('Voltar').last);
     await tester.pumpAndSettle();
-    expect(find.text('Catálogo de episódios'), findsOneWidget);
+    await tester.tap(find.text('Voltar').last);
+    await tester.pumpAndSettle();
+    expect(find.text('Episódios'), findsOneWidget);
 
     await openNamed(tester, 'Lawnmower Dog');
-    await tester.tap(find.text('Seguinte: Anatomy Park'));
+    await tester.tap(find.text('Seguinte · S01E03'));
     await tester.pumpAndSettle();
     expect(find.text('Anatomy Park'), findsWidgets);
     expect(find.text('Sem episódio seguinte'), findsOneWidget);

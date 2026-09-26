@@ -29,26 +29,31 @@ class CatalogPage extends StatefulWidget {
 class _CatalogPageState extends State<CatalogPage> {
   final name = TextEditingController();
   final code = TextEditingController();
+  String season = '';
   late Future<EpisodeCatalog> pending;
 
   @override
   void initState() {
     super.initState();
     pending = readCatalog(widget.scope.api, const CatalogQuery());
+    name.addListener(refresh);
+    code.addListener(refresh);
   }
 
   @override
   void dispose() {
+    name.removeListener(refresh);
+    code.removeListener(refresh);
     name.dispose();
     code.dispose();
     super.dispose();
   }
 
-  void applyFilter() {
-    setState(() {
-      pending = readCatalog(widget.scope.api, cleanQuery(CatalogQuery(name: name.text, code: code.text)));
-    });
-  }
+  void refresh() => setState(() {});
+
+  void onSeason(String? value) => setState(() => season = value ?? '');
+
+  CatalogQuery draftQuery() => CatalogQuery(name: name.text, code: code.text, season: season);
 
   void openEpisode(EpisodeSummary episode) {
     unawaited(
@@ -62,9 +67,14 @@ class _CatalogPageState extends State<CatalogPage> {
   Widget build(BuildContext context) {
     return PageFrame(
       children: [
-        Heading(spec: HeadingSpec(text: 'Catálogo de episódios', style: titleStyle())),
-        CatalogForm(view: CatalogFormView(fields: CatalogFields(name: name, code: code), onFilter: applyFilter)),
-        CatalogBody(input: CatalogBodyInput(pending: pending, onOpen: openEpisode)),
+        Text('CATÁLOGO', style: eyebrowStyle()),
+        const SizedBox(height: 8),
+        Heading(spec: HeadingSpec(text: 'Episódios', style: titleStyle())),
+        const SizedBox(height: 8),
+        Text('Escolhe um episódio. O elenco vem por ordem alfabética, com censo e índice.', style: bodyStyle()),
+        const SizedBox(height: 28),
+        CatalogForm(fields: CatalogFields(name: name, code: code, season: season, onSeason: onSeason)),
+        CatalogBody(input: CatalogBodyInput(pending: pending, query: draftQuery(), onOpen: openEpisode)),
       ],
     );
   }

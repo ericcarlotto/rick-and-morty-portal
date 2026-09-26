@@ -74,7 +74,7 @@ class NeighborLink extends StatelessWidget {
     return TextButton(
       style: linkStyle(),
       onPressed: () => link.action.onOpen(episode.id),
-      child: Text('${link.copy.label}: ${episode.name}', style: bodyStyle()),
+      child: Text('${link.copy.label} · ${episode.code}', style: bodyStyle()),
     );
   }
 }

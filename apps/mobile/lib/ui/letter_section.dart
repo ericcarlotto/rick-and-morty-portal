@@ -26,13 +26,16 @@ class LetterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      key: section.binding.sectionKey,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Heading(spec: HeadingSpec(text: section.group.letter, style: indexStyle())),
-        for (final character in section.group.characters) cardFor(section.binding, character),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Column(
+        key: section.binding.sectionKey,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Heading(spec: HeadingSpec(text: section.group.letter, style: indexStyle().copyWith(fontSize: 40))),
+          for (final character in section.group.characters) cardFor(section.binding, character),
+        ],
+      ),
     );
   }
 }

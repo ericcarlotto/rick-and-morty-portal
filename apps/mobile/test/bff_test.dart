@@ -26,6 +26,8 @@ void main() {
     expect(catalogPath(const CatalogQuery(name: 'Lawn')), '/api/episodes?name=Lawn');
     expect(catalogPath(const CatalogQuery(code: 'S01E03')), '/api/episodes?code=S01E03');
     expect(catalogPath(const CatalogQuery(name: 'Lawn Dog', code: 'S01')), '/api/episodes?name=Lawn+Dog&code=S01');
+    expect(catalogPath(const CatalogQuery(season: '2')), '/api/episodes?season=2');
+    expect(catalogPath(const CatalogQuery(name: 'A', season: '2')), '/api/episodes?name=A&season=2');
     expect(castPath(2), '/api/episodes/2/cast');
     expect(bffUri(defaultBffOrigin, healthPath).toString(), '$defaultBffOrigin$healthPath');
     expect(catalogPath(const CatalogQuery(name: 'Pilot')).contains('rickandmortyapi.com'), isFalse);
@@ -49,6 +51,7 @@ void main() {
     await expectLater(failing(200, 'nao-json').health(), throwsA(isA<PortalException>()));
     expect(cleanQuery(const CatalogQuery(name: '  Lawn ', code: '')).name, 'Lawn');
     expect(cleanQuery(const CatalogQuery()).code, isNull);
+    expect(cleanQuery(const CatalogQuery(season: ' 2 ')).season, '2');
   });
 }
 
