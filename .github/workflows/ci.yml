@@ -74,5 +74,6 @@ jobs:
           ram-size: 2048
           emulator-boot-timeout: 600
           disable-animations: true
-          emulator-options: -no-window -no-snapshot -gpu swiftshader_indirect
+          emulator-options: -no-window -no-snapshot -gpu swiftshader_indirect -skin 900x2400
+          pre-emulator-launch-script: bash "$GITHUB_WORKSPACE/.github/workflows/emulator-screen.sh"
           script: bash "$GITHUB_WORKSPACE/.github/workflows/emulator-integration.sh"
