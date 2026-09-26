@@ -5,9 +5,9 @@ export function EpisodeList({ episodes }: { episodes: EpisodeSummary[] }) {
     <ul>
       {episodes.map((episode) => (
         <li key={episode.id}>
-          <a href={`/episodes/${episode.id}`}>
-            {episode.name}
+          <a className="episode-row" href={`/episodes/${episode.id}`}>
             <span className="code">{episode.code}</span>
+            <span className="episode-name">{episode.name}</span>
           </a>
         </li>
       ))}

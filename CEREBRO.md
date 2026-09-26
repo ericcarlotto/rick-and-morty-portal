@@ -14,7 +14,7 @@ Só este teste. Ler isto primeiro.
 | Lint (ESLint na raiz) | `npm run lint` |
 | Testes no plano | unidade, componente, integração, HTTP, E2E, contrato, acessibilidade. Cobertura mínima 96%, alvo 100% |
 | T1 BFF | feito. `npm run start:bff` |
-| T2 Web | feito |
+| T2 Web | feito. Visual de arquivo no catálogo, elenco e detalhe |
 | T3 Flutter | feito |
 | T4 Docker e CI | feito |
 

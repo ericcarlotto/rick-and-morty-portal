@@ -7,9 +7,9 @@ export function CastScreenView({ model }: { model: CastModel }) {
 }
 
 function CastFallback({ model }: { model: Exclude<CastModel, { kind: 'ready' }> }) {
-  if (model.kind === 'error') return <p role="alert">Não foi possível ler o elenco.</p>;
+  if (model.kind === 'error') return <p className="notice" role="alert">Não foi possível ler o elenco.</p>;
   return (
-    <p>
+    <p className="notice">
       Episódio inválido. <a href="/">Catálogo</a>
     </p>
   );

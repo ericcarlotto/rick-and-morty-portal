@@ -8,14 +8,26 @@ import { Neighbors } from './neighbors';
 export function CastView({ cast }: { cast: Cast }) {
   const groups = groupByLetter({ index: cast.index, characters: cast.characters });
   return (
-    <main>
-      <a href="/">Catálogo</a>
-      <h1 className="chosen">{cast.episode.name}</h1>
-      <p className="code">{cast.episode.code}</p>
-      <Neighbors previousEpisode={cast.previousEpisode} nextEpisode={cast.nextEpisode} />
-      <LetterIndex letters={cast.index} />
-      <CastGroups groups={groups} episodeId={cast.episode.id} />
-      <CensusPanel census={cast.census} />
+    <main className="screen cast">
+      <div className="cast-body">
+        <LetterIndex letters={cast.index} />
+        <CastColumn cast={cast} groups={groups} />
+      </div>
     </main>
+  );
+}
+
+function CastColumn({ cast, groups }: { cast: Cast; groups: ReturnType<typeof groupByLetter> }) {
+  return (
+    <div className="cast-main">
+      <div className="screen-head">
+        <a className="back" href="/">Catálogo</a>
+        <p className="code">{cast.episode.code}</p>
+        <h1 className="chosen">{cast.episode.name}</h1>
+        <Neighbors previousEpisode={cast.previousEpisode} nextEpisode={cast.nextEpisode} />
+      </div>
+      <CensusPanel census={cast.census} />
+      <CastGroups groups={groups} episodeId={cast.episode.id} />
+    </div>
   );
 }
