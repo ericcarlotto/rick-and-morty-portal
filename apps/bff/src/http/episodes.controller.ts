@@ -11,8 +11,13 @@ export class EpisodesController {
   constructor(@Inject(EPISODE_SOURCE) private readonly source: EpisodeSource) {}
 
   @Get()
-  catalog(@Query('name') name: unknown, @Query('code') code: unknown): Promise<EpisodeCatalog> {
-    return buildCatalog({ source: this.source, name: textQuery(name), code: textQuery(code) });
+  catalog(@Query() query: Record<string, unknown>): Promise<EpisodeCatalog> {
+    return buildCatalog({
+      source: this.source,
+      name: textQuery(query.name),
+      code: textQuery(query.code),
+      season: textQuery(query.season),
+    });
   }
 
   @Get(':id/cast')
