@@ -1,0 +1,11 @@
+.git
+node_modules
+**/node_modules
+**/.next
+**/coverage
+**/.dart_tool
+**/build
+docs
+test-results
+playwright-report
+*.md

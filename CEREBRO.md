@@ -4,7 +4,7 @@ Só este teste. Ler isto primeiro.
 
 **Código:** https://github.com/ericcarlotto/rick-and-morty-portal  
 **Atualizado:** 2026-09-26  
-**Próxima tarefa:** T4, Docker e CI
+**Próxima tarefa:** nenhuma
 
 ## Estado
 
@@ -16,7 +16,7 @@ Só este teste. Ler isto primeiro.
 | T1 BFF | feito. `npm run start:bff` |
 | T2 Web | feito |
 | T3 Flutter | feito |
-| T4 Docker e CI | por fazer |
+| T4 Docker e CI | feito |
 
 O BFF está em `apps/bff`. A web está em `apps/web`. O Flutter está em `apps/mobile`. Não criar pastas que o plano não nomeia.
 

@@ -11,12 +11,14 @@ void main() {
     await tester.enterText(find.byKey(const Key('filtro-nome')), 'Lawn');
     await tester.tap(find.byKey(const Key('filtrar')));
     await tester.pumpAndSettle();
+    await untilPresent(tester, find.text('Lawnmower Dog'));
     expect(find.text('Lawnmower Dog'), findsOneWidget);
     expect(find.text('Pilot'), findsNothing);
     await tester.enterText(find.byKey(const Key('filtro-nome')), '');
     await tester.enterText(find.byKey(const Key('filtro-codigo')), 'S01E03');
     await tester.tap(find.byKey(const Key('filtrar')));
     await tester.pumpAndSettle();
+    await untilPresent(tester, find.text('Anatomy Park'));
     expect(find.text('Anatomy Park'), findsOneWidget);
     expect(find.text('Pilot'), findsNothing);
   });

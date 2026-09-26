@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:mobile/theme/text_styles.dart';
+
+// O salto alinha a letra ao topo. Este alcance mantém o índice e o último cartão montados.
+const pageCacheExtent = 2400.0;
 
 class PageFrame extends StatelessWidget {
   const PageFrame({required this.children, super.key});
@@ -11,6 +15,7 @@ class PageFrame extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
+          scrollCacheExtent: const ScrollCacheExtent.pixels(pageCacheExtent),
           padding: const EdgeInsets.fromLTRB(20, 24, 20, 48),
           children: children,
         ),
