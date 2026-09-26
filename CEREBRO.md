@@ -4,7 +4,7 @@ Só este teste. Ler isto primeiro.
 
 **Código:** https://github.com/ericcarlotto/rick-and-morty-portal  
 **Atualizado:** 2026-09-26  
-**Próxima tarefa:** T2, Web
+**Próxima tarefa:** T3, Flutter
 
 ## Estado
 
@@ -14,11 +14,11 @@ Só este teste. Ler isto primeiro.
 | Lint (ESLint na raiz) | `npm run lint` |
 | Testes no plano | unidade, componente, integração, HTTP, E2E, contrato, acessibilidade. Cobertura mínima 96%, alvo 100% |
 | T1 BFF | feito. `npm run start:bff` |
-| T2 Web | por fazer |
+| T2 Web | feito |
 | T3 Flutter | por fazer |
 | T4 Docker e CI | por fazer |
 
-O BFF está em `apps/bff`. Não criar pastas que o plano não nomeia.
+O BFF está em `apps/bff`. A web está em `apps/web`. Não criar pastas que o plano não nomeia.
 
 A pasta `docs/` fica fora do git. O plano está no ficheiro local `docs/PLANO.md`.
 
