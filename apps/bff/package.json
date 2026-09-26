@@ -1,0 +1,14 @@
+{
+  "name": "@rick/bff",
+  "private": true,
+  "dependencies": {
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/platform-express": "^11.1.6",
+    "@nestjs/throttler": "^6.4.0",
+    "@rick/contract": "*",
+    "helmet": "^8.1.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  }
+}

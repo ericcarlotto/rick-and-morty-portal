@@ -1,0 +1,20 @@
+{
+  "episode": { "id": 1, "name": "Pilot", "code": "S01E01" },
+  "previousEpisode": null,
+  "nextEpisode": { "id": 2, "name": "Lawnmower Dog", "code": "S01E02" },
+  "index": ["M"],
+  "characters": [
+    {
+      "id": 2,
+      "name": "Morty Smith",
+      "species": "Human",
+      "status": "Vivo",
+      "origin": "Earth",
+      "letter": "M"
+    }
+  ],
+  "census": {
+    "byStatus": [{ "label": "Vivo", "count": 1 }],
+    "bySpecies": [{ "label": "Human", "count": 1 }]
+  }
+}
